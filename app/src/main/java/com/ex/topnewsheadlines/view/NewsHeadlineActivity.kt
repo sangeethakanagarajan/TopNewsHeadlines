@@ -1,14 +1,16 @@
 package com.ex.topnewsheadlines.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ex.topnewsheadlines.R
 import com.ex.topnewsheadlines.adapter.NewsListAdapter
 import com.ex.topnewsheadlines.viewmodel.NewsHeadlineActivityViewModel
 import kotlinx.android.synthetic.main.activity_news_headline.*
+
 
 class NewsHeadlineActivity : AppCompatActivity() {
 
@@ -31,6 +33,12 @@ class NewsHeadlineActivity : AppCompatActivity() {
         })
         newsAdapter = NewsListAdapter(this)
         recycler_news.adapter = newsAdapter
+        recycler_news.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                LinearLayoutManager.HORIZONTAL
+            )
+        )
 
         newsHeadlineViewModel.newsList.observe(this, Observer {
             newsAdapter.setNewsList(it)
