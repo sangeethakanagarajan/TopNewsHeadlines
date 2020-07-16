@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TopNewsHeadlines</string>
+    <string name="news_source">Source</string>
+
+    <string name="item_source_date" formatted="false">%s - %s at %s</string>
+    <string name="image_resource">Image Resource</string>
 </resources>

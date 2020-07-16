@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="row_item_margin_horizontal">12dp</dimen>
+    <dimen name="row_item_margin_vertical">12dp</dimen>
+    <dimen name="news_img_height">200dp</dimen>
+    <dimen name="margin_xlarge">20dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+
+    //Text size
+    <dimen name="news_headline_size">20sp</dimen>
+    <dimen name="news_source_size">12sp</dimen>
+</resources>
