@@ -9,4 +9,5 @@
     //Text size
     <dimen name="news_headline_size">20sp</dimen>
     <dimen name="news_source_size">12sp</dimen>
+    <dimen name="news_desc_size">18sp</dimen>
 </resources>

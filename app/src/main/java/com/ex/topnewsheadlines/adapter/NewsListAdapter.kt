@@ -1,6 +1,7 @@
 package com.ex.topnewsheadlines.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,10 @@ import com.bumptech.glide.Glide
 import com.ex.topnewsheadlines.R
 import com.ex.topnewsheadlines.network.model.Articles
 import com.ex.topnewsheadlines.util.AppUtils
+import com.ex.topnewsheadlines.view.NewsDetailHeadlineActivity
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.row_item_feed.view.*
+
 
 class NewsListAdapter(private val context: Context) :
     RecyclerView.Adapter<NewsListAdapter.NewsViewHolder>() {
@@ -18,7 +22,7 @@ class NewsListAdapter(private val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.row_item_feed, parent, false)
-        return NewsViewHolder(view)
+        return NewsViewHolder(view, context)
     }
 
     override fun getItemCount(): Int = list.size
@@ -35,15 +39,24 @@ class NewsListAdapter(private val context: Context) :
         notifyDataSetChanged()
     }
 
-    class NewsViewHolder(itemView: View) :
+    class NewsViewHolder(itemView: View, context: Context) :
         RecyclerView.ViewHolder(itemView) {
-        /*  var  mTitleView
-          init {
-              mTitleView =
-             val mYearView = itemView.txt_news_source_date
-          }*/
+
+        private var articles: Articles? = null
+
+        init {
+            itemView.setOnClickListener {
+                articles.let {
+                    val intent = Intent(context, NewsDetailHeadlineActivity::class.java)
+                    intent.putExtra("articles", Gson().toJson(articles))
+                    context.startActivity(intent)
+                }
+            }
+
+        }
 
         fun bind(articles: Articles) {
+            this.articles = articles
             itemView.txt_headline_title.text = articles.title
 
             val resources = this.itemView.context.resources
@@ -63,7 +76,5 @@ class NewsListAdapter(private val context: Context) :
                 .into(itemView.img_news)
 
         }
-
     }
-
 }
